@@ -1,4 +1,4 @@
-import geb.spock.GebReportingSpec
+/*import geb.spock.GebReportingSpec
 
 class GebishOrgSpec extends GebReportingSpec {
 
@@ -20,4 +20,4 @@ class GebishOrgSpec extends GebReportingSpec {
         then:
         at TheBookOfGebPage
     }
-}
+}*/
