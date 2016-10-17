@@ -17,4 +17,11 @@ class TutMainPage extends Page {
         spanUserName {$('.uname')}
     }
 
+    void login(username, password) {
+        buttonEnter.click()
+        fieldLogin = username
+        fieldPassword = password
+        buttonSubmit.click()
+}
+
 }
