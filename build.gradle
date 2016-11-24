@@ -2,14 +2,15 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 ext {
     // The drivers we want to use
-    drivers = ["firefox", "chrome", "phantomJs"]
+    drivers = ["chrome", "phantomJs", "firefox"]
 
     ext {
         groovyVersion = '2.4'
         gebVersion = '1.0'
         seleniumVersion = '3.0.0'
-        chromeDriverVersion = '2.19'
+        chromeDriverVersion = '2.25'
         phantomJsVersion = '1.9.7'
+        marionetteDriverVersion = '2.4.1'
     }
 }
 
@@ -32,14 +33,18 @@ dependencies {
     // If using JUnit, need to depend on geb-junit (3 or 4)
     testCompile "org.gebish:geb-junit4:$gebVersion"
 
+    testCompile "junit:junit:4.10"
+    //testCompile "org.codehaus.geb:geb-junit4:0.7.2"
     // Drivers
     testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+
     testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
     // using a custom version of phantomjs driver for now as the original one does not support WebDriver > 2.43.1
     testCompile("com.codeborne:phantomjsdriver:1.2.1") {
         // phantomjs driver pulls in a different selenium version
         transitive = false
     }
+    //System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
 }
 
 drivers.each { driver ->

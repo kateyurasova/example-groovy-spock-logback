@@ -6,13 +6,16 @@
 
 
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.firefox.FirefoxDriver
+//import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.MarionetteDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
 
-waiting {
-	timeout = 2
-}
+import static org.openqa.selenium.remote.DesiredCapabilities.firefox
 
+waiting {
+	timeout = 10
+}
+//System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\webdriver.gecko.driver");
 environments {
 	
 	// run via “./gradlew chromeTest”
@@ -24,7 +27,12 @@ environments {
 	// run via “./gradlew firefoxTest”
 	// See: http://code.google.com/p/selenium/wiki/FirefoxDriver
 	firefox {
-		driver = { new FirefoxDriver() }
+		//System.setProperty('webdriver.firefox.driver', 'D:\\geckodriver-0.11.1\\webdriver.gecko.driver')
+		//System.setProperty("webdriver.firefox.marionette","D:\\geckodriver-0.11.1\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
+
+		// driver = { new FirefoxDriver() }
+		driver = { new MarionetteDriver()}
 	}
 
     phantomJs {
@@ -37,3 +45,4 @@ environments {
 // To run the tests with all browsers just run “./gradlew test”
 
 baseUrl = "http://www.tut.by"
+reportsDir = new File("target/runtime_reports_dir")
