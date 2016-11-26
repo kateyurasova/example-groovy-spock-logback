@@ -19,7 +19,7 @@ class TutMainPage extends Page {
         searchButton { $ ("[name='search'") }
     }
 
-    static void login(username, password) {
+    void login(username, password) {
         enterButton.click()
         loginField = username
         passwordField = password

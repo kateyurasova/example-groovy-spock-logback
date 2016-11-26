@@ -6,14 +6,15 @@
 
 
 import org.openqa.selenium.chrome.ChromeDriver
-//import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxDriver
+//import org.webjars.
 import org.openqa.selenium.firefox.MarionetteDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
 
 import static org.openqa.selenium.remote.DesiredCapabilities.firefox
 
 waiting {
-	timeout = 10
+	timeout = 20
 }
 //System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\webdriver.gecko.driver");
 environments {
@@ -29,9 +30,13 @@ environments {
 	firefox {
 		//System.setProperty('webdriver.firefox.driver', 'D:\\geckodriver-0.11.1\\webdriver.gecko.driver')
 		//System.setProperty("webdriver.firefox.marionette","D:\\geckodriver-0.11.1\\geckodriver.exe");
-		System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
 
-		// driver = { new FirefoxDriver() }
+		driver = { new FirefoxDriver() }
+		//driver = { new MarionetteDriver()}
+	}
+
+	mar {
 		driver = { new MarionetteDriver()}
 	}
 
