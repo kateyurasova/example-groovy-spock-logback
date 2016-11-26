@@ -2,7 +2,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 ext {
     // The drivers we want to use
-    drivers = ["chrome", "phantomJs", "firefox", "mar"]
+    drivers = ["chrome", "phantomJs", "firefox"]
 
     ext {
         groovyVersion = '2.4'

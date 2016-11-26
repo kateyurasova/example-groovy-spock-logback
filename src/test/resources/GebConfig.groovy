@@ -5,12 +5,12 @@
 */
 
 
+import Tests.FFDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 //import org.webjars.
 import org.openqa.selenium.firefox.MarionetteDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
-
 import static org.openqa.selenium.remote.DesiredCapabilities.firefox
 
 waiting {
@@ -32,12 +32,9 @@ environments {
 		//System.setProperty("webdriver.firefox.marionette","D:\\geckodriver-0.11.1\\geckodriver.exe");
 		//System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
 
-		driver = { new FirefoxDriver() }
+		driver = { new FFDriver() }
+		//driver.getMetaClass().
 		//driver = { new MarionetteDriver()}
-	}
-
-	mar {
-		driver = { new MarionetteDriver()}
 	}
 
     phantomJs {
@@ -51,3 +48,8 @@ environments {
 
 baseUrl = "http://www.tut.by"
 reportsDir = new File("target/runtime_reports_dir")
+
+/*def cleanup() {
+	//Thread.sleep(2000);
+	Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
+}*/
