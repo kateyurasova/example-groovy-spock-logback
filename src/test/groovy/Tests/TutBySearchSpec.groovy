@@ -24,22 +24,18 @@ public class TutBySearchSpec extends GebReportingSpec {
 
         and: "the page contains criteria previously defined in search input"
         SearchResultsPage searchResultsPage = browser.at SearchResultsPage
-        waitFor {searchResultsPage.searchInput }
+        waitFor { searchResultsPage.searchInput }
         assert searchResultsPage.searchInput.value() == searchCriteria
 
         and: "links found by the criteria actually contain criteria in name"
         println(searchResultsPage.searchResultsLinks.size())
-        searchResultsPage.searchResultsLinks.each { link->
-                println link.getAttribute("innerText").toString()
+        searchResultsPage.searchResultsLinks.each { link ->
+            println link.getAttribute("innerText").toString()
             assert link.getAttribute("innerText").contains(searchCriteria) ||
-                    link.getAttribute("innerText").contains("Минск")||
+                    link.getAttribute("innerText").contains("Минск") ||
                     link.getAttribute("innerText").contains("МИНСК")
 
         }
 
-        //driver.close()
-/*        cleanup:
-        Thread.sleep(2000);
-        Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");*/
     }
 }

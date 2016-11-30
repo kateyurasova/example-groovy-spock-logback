@@ -5,12 +5,15 @@
 */
 
 
-import Tests.FFDriver
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.firefox.FirefoxBinary
 import org.openqa.selenium.firefox.FirefoxDriver
 //import org.webjars.
 import org.openqa.selenium.firefox.MarionetteDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
+import org.openqa.selenium.remote.DriverCommand
+
 import static org.openqa.selenium.remote.DesiredCapabilities.firefox
 
 waiting {
@@ -31,9 +34,14 @@ environments {
 		//System.setProperty('webdriver.firefox.driver', 'D:\\geckodriver-0.11.1\\webdriver.gecko.driver')
 		//System.setProperty("webdriver.firefox.marionette","D:\\geckodriver-0.11.1\\geckodriver.exe");
 		//System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
+		//FirefoxDriver.metaClass.quit << {->  Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");}
+		//FirefoxDriver firefoxDriver = new FirefoxDriver();
 
-		driver = { new FFDriver() }
-		//driver.getMetaClass().
+		WebDriver.metaClass.quit = {->
+			Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
+		}
+
+		driver = { new FirefoxDriver() }
 		//driver = { new MarionetteDriver()}
 	}
 
@@ -43,6 +51,7 @@ environments {
 
 }
 
+//gradlew -DfirefoxTest.single=TutBySearch* firefoxTest
 
 // To run the tests with all browsers just run “./gradlew test”
 

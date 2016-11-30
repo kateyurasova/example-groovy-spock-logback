@@ -2,7 +2,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 ext {
     // The drivers we want to use
-    drivers = ["chrome", "phantomJs", "firefox"]
+    drivers = ["chrome", "phantomJs", "firefox", "ie"]
 
     ext {
         groovyVersion = '2.4'
@@ -81,6 +81,7 @@ phantomJsTest {
 test {
     dependsOn drivers.collect { tasks["${it}Test"] }
     enabled = false
+    maxParallelForks = 2
 }
 
 apply from: "gradle/ci.gradle"
