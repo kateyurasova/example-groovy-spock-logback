@@ -1,10 +1,12 @@
+package Tests.Geb
+
 import geb.spock.GebReportingSpec
 
-/*class GebishOrgSpec extends GebReportingSpec {
+/*class Tests.Geb.GebishOrgSpec extends GebReportingSpec {
 
     def "can get to the current Book of Geb"() {
         when:
-        to GebishOrgHomePage
+        to Tests.Geb.GebishOrgHomePage
 
         and: //hover over to expand the menu
         interact {
@@ -18,6 +20,6 @@ import geb.spock.GebReportingSpec
         manualsMenu.links[0].click()
 
         then:
-        at TheBookOfGebPage
+        at Tests.Geb.TheBookOfGebPage
     }
 }*/

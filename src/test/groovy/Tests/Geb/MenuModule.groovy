@@ -1,3 +1,5 @@
+package Tests.Geb
+
 import geb.Module
 
 class MenuModule extends Module {

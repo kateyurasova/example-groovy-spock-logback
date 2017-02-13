@@ -23,6 +23,9 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.0.1'
+
     // If using Spock, need to depend on geb-spock
     testCompile "org.gebish:geb-spock:$gebVersion"
     testCompile("org.spockframework:spock-core:1.0-groovy-2.4") {
@@ -44,7 +47,15 @@ dependencies {
         // phantomjs driver pulls in a different selenium version
         transitive = false
     }
-    //System.setProperty("webdriver.gecko.driver","D:\\geckodriver-0.11.1\\geckodriver.exe");
+
+// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
+    //testCompile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
+   // testCompile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.0.1'
+
+
+
 }
 
 drivers.each { driver ->

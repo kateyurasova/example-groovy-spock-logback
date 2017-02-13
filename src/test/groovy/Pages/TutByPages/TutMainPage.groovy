@@ -1,4 +1,4 @@
-package Pages
+package Pages.TutByPages
 
 import geb.Page
 

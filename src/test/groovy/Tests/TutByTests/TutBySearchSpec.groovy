@@ -1,7 +1,7 @@
-package Tests;
+package Tests.TutByTests;
 
-import Pages.SearchResultsPage;
-import Pages.TutMainPage
+import Pages.TutByPages.SearchResultsPage;
+import Pages.TutByPages.TutMainPage
 import geb.spock.GebReportingSpec;
 import spock.lang.Issue
 

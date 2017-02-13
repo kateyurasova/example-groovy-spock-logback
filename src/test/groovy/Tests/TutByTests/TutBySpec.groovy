@@ -1,9 +1,7 @@
-package Tests
+package Tests.TutByTests
 
-import Pages.SearchResultsPage
-import Pages.TutMainPage
+import Pages.TutByPages.TutMainPage
 import geb.spock.GebReportingSpec
-import org.gradle.api.logging.*;
 
 public class TutBySpec extends GebReportingSpec {
 
