@@ -4,7 +4,7 @@
 	See: http://www.gebish.org/manual/current/#configuration
 */
 
-
+import geb.report.ScreenshotReporter
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxBinary
@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.MarionetteDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
 import org.openqa.selenium.remote.DriverCommand
+import util.RpScreenshotListener
 
 import static org.openqa.selenium.remote.DesiredCapabilities.firefox
 
@@ -57,6 +58,8 @@ environments {
 
 baseUrl = "http://www.tut.by"
 reportsDir = new File("target/runtime_reports_dir")
+reporter = new ScreenshotReporter()
+reportingListener = new RpScreenshotListener()
 
 /*def cleanup() {
 	//Thread.sleep(2000);

@@ -16,7 +16,7 @@ class TutMainPage extends Page {
         submitButtom { $('.button.auth__enter') }
         userNameSpan { $('.uname') }
         searchField { $('#search_from_str') }
-        searchButton { $ ("[name='search'") }
+        searchButton(to: SearchResultsPage) { $ ("input[name='search']") }
     }
 
     void login(username, password) {
@@ -24,6 +24,11 @@ class TutMainPage extends Page {
         loginField = username
         passwordField = password
         submitButtom.click()
+    }
+
+    def search(String searchCriteria) {
+        searchField << searchCriteria
+        searchButton.click ()
     }
 
 }

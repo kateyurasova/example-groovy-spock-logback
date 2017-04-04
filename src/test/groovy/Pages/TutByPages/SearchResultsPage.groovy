@@ -2,14 +2,17 @@ package Pages.TutByPages
 
 import geb.Page
 
-public class SearchResultsPage extends Page {
-    static at = { //title == 'TUT.BY | ПОИСК - Интернет - Minsk'
-        title.startsWith('TUT.BY | ПОИСК - Интернет')
+class SearchResultsPage extends Page {
+    static at = {
+        title.startsWith ('TUT.BY | ПОИСК - Интернет')
     }
 
     static content = {
-        searchResultsLinks {$("li[class='b-results__li'] h3 a[target='_blank']") }
-        searchInput {$("#search_from_str")}
-        //searchInput($("input[id='search_from_str']"))
+        searchResultsLinks { $ ("li[class='b-results__li'] h3 a[target='_blank']") }
+        searchInput(wait: true) { $ ("#search_from_str") }
+    }
+
+    List<String> getResultLinkDescriptions() {
+        searchResultsLinks.collect {it.getAttribute ("innerText")}
     }
 }

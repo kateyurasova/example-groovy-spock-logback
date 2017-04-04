@@ -1,41 +1,41 @@
-package Tests.TutByTests;
+package Tests.TutByTests
 
-import Pages.TutByPages.SearchResultsPage;
-import Pages.TutByPages.TutMainPage
-import geb.spock.GebReportingSpec;
+import Pages.TutByPages.SearchResultsPage
+import Pages.TutByPages.TutMainPage;
+import geb.spock.GebReportingSpec
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import spock.lang.Issue
+import spock.lang.Unroll
 
 @Issue(["Search issue"])
-public class TutBySearchSpec extends GebReportingSpec {
+class TutBySearchSpec extends GebReportingSpec {
+    final static Logger log = LoggerFactory.getLogger(TutBySearchSpec.class)
+    @Unroll
+    def "Search works at main page based on the criteria: #searchCriterion"(String searchCriterion, List resultFragments) {
 
-    def "Search works at main page based on the criteria entered by user"() {
-        setup:
-        def searchCriteria = "Minsk"
+        given: "Main page is opened"
+        report("=== TUT MAIN PAGE ===")
+        to TutMainPage
 
-        when: "User  goes to the main TUT.BY page"
-        TutMainPage tutMainPage = to TutMainPage
-
-        and: "enter search criteria"
-        tutMainPage.searchField << searchCriteria
-        tutMainPage.searchButton.click()
+        when: "enter search criteria"
+        log.debug("=== SEARCH CRITERIA ===")
+        search (searchCriterion)
 
         then: "Page with search results appears"
-        waitFor { at SearchResultsPage }
+        at SearchResultsPage
 
         and: "the page contains criteria previously defined in search input"
-        SearchResultsPage searchResultsPage = browser.at SearchResultsPage
-        waitFor { searchResultsPage.searchInput }
-        assert searchResultsPage.searchInput.value() == searchCriteria
+        searchInput.value () == searchCriterion
 
         and: "links found by the criteria actually contain criteria in name"
-        println(searchResultsPage.searchResultsLinks.size())
-        searchResultsPage.searchResultsLinks.each { link ->
-            println link.getAttribute("innerText").toString()
-            assert link.getAttribute("innerText").contains(searchCriteria) ||
-                    link.getAttribute("innerText").contains("Минск") ||
-                    link.getAttribute("innerText").contains("МИНСК")
-
+        getResultLinkDescriptions ().each { description ->
+            assert resultFragments.any { description.contains (it) },
+                    "Description [$description] doesn't contain any fragment"
         }
 
+        where:
+        searchCriterion | resultFragments
+        'Minsk'         | ['Minsk', "Минск", "МИНСК"]
     }
 }

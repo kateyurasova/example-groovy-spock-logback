@@ -6,7 +6,7 @@ ext {
 
     ext {
         groovyVersion = '2.4'
-        gebVersion = '1.0'
+        gebVersion = '1.1.1'
         seleniumVersion = '3.0.1'
         chromeDriverVersion = '2.25'
         phantomJsVersion = '1.9.7'
@@ -19,18 +19,44 @@ apply from: "gradle/idea.gradle"
 apply from: "gradle/osSpecificDownloads.gradle"
 
 repositories {
-    mavenCentral()
+    jcenter()
+    jcenter{
+        url 'https://dl.bintray.com/epam/reportportal'
+    }
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.0.1'
+    testCompile 'com.epam.reportportal:agent-java-spock:2.6.0'
+    testCompile 'com.epam.reportportal:logger-java-logback:2.6.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.2'
 
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+
+
+    compileOnly 'org.spockframework:spock-core:1.0-groovy-2.4'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.0.1'
     // If using Spock, need to depend on geb-spock
     testCompile "org.gebish:geb-spock:$gebVersion"
     testCompile("org.spockframework:spock-core:1.0-groovy-2.4") {
         exclude group: "org.codehaus.groovy"
     }
+    "navigator.sayswho= (function(){\n" +
+            "    var ua= navigator.userAgent, tem, \n" +
+            "    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\\/))\\/?\\s*(\\d+)/i) || [];\n" +
+            "    if(/trident/i.test(M[1])){\n" +
+            "        tem=  /\\brv[ :]+(\\d+)/g.exec(ua) || [];\n" +
+            "        return 'IE '+(tem[1] || '');\n" +
+            "    }\n" +
+            "    if(M[1]=== 'Chrome'){\n" +
+            "        tem= ua.match(/\\b(OPR|Edge)\\/(\\d+)/);\n" +
+            "        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');\n" +
+            "    }\n" +
+            "    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];\n" +
+            "    if((tem= ua.match(/version\\/(\\d+)/i))!= null) M.splice(1, 1, tem[1]);\n" +
+            "    return M.join(' ');\n" +
+            "})();\n" +
+            "\n" +
+            "console.log(navigator.sayswho);"
     testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
 
     // If using JUnit, need to depend on geb-junit (3 or 4)
